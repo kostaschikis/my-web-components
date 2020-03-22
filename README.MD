@@ -1,6 +1,6 @@
 # My Web Components 🛠
 
-## ● Simple User Web Component
+## ● Simple User-Card Component
 
 Slots:
 
