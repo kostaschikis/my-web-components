@@ -42,6 +42,8 @@ class UserCard extends HTMLElement {
     constructor() {
         super();
 
+        this.showInfo = true;
+
         // Attaach ShadowDOM
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
@@ -49,6 +51,31 @@ class UserCard extends HTMLElement {
         // Get Attributes
         this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
         this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');
+
+    }
+
+    toggleInfo() {
+        this.showInfo = !this.showInfo;
+
+        const info = this.shadowRoot.querySelector('.info');
+        const toggleBtn = this.shadowRoot.querySelector('#toggle-info');
+
+
+        if (this.showInfo) {
+            info.style.display = 'block';
+            toggleBtn.innerText = 'Hide Info';
+        } else {
+            info.style.display = 'none';
+            toggleBtn.innerText = 'Show Info';
+        }
+    }
+
+    connectedCallback() {
+        this.shadowRoot.querySelector('#toggle-info').addEventListener('click', () => this.toggleInfo());
+    }
+
+    disconnectedCallback() {
+        this.shadowRoot.querySelector('#toggle-info').removeEventListener();
     }
 }
 
