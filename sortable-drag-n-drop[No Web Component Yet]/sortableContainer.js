@@ -28,7 +28,7 @@ template.innerHTML = `
 class SortableContainer extends HTMLElement {
     constructor() {
         super();
-        
+
         const draggables = document.querySelectorAll('.draggable')
         const containers = document.querySelectorAll('.container')
 
@@ -37,3 +37,5 @@ class SortableContainer extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 }
+
+window.customElements.define('sortable-container', SortableContainer);    
