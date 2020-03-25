@@ -19,9 +19,7 @@ template.innerHTML = `
         }
     </style>
     <div class="container">
-        <p class="draggable" draggable="true">1</p>
-        <p class="draggable" draggable="true">2</p>
-        <p class="draggable" draggable="true">3</p>
+        <slot/>
     </div>
 `;
 
@@ -33,10 +31,32 @@ class SortableContainer extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-        const containers = this.shadowRoot.querySelectorAll('.container')
-        const draggables = this.shadowRoot.querySelectorAll('.draggable')
-        console.log(draggables, containers) 
+        // Get Nodes
+        this.containers = this.shadowRoot.querySelectorAll('.container')
+        this.draggables = this.shadowRoot.querySelectorAll('.draggable')
+    
     }
+
+    attachOpacity(draggables) {
+        draggables.forEach(draggable => {
+            // When Drag Start -> Element Opacity 0.5
+            draggable.addEventListener('dragstart', () => {
+                draggable.classList.add('dragging')
+            })
+            
+            // When Drag End -> Element Opacity 1
+            draggable.addEventListener('dragend', () => {
+                draggable.classList.remove('dragging')
+            })
+        })
+    }
+
+
+    connectedCallback() {
+        // Give Draggables The Opacity Attribute
+        this.attachOpacity(this.draggables)
+    }
+
 }
 
 window.customElements.define('sortable-container', SortableContainer);    
