@@ -32,9 +32,7 @@ class SortableContainer extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
 
         // Get Nodes
-        this.containers = this.shadowRoot.querySelectorAll('.container')
-        this.draggables = this.shadowRoot.querySelectorAll('.draggable')
-    
+        this.containers = this.shadowRoot.querySelectorAll('.container')   
     }
 
     attachOpacity(draggables) {
@@ -53,8 +51,11 @@ class SortableContainer extends HTMLElement {
 
 
     connectedCallback() {
+    
         // Give Draggables The Opacity Attribute
-        this.attachOpacity(this.draggables)
+        // this.attachOpacity(draggables)
+
+
     }
 
 }
