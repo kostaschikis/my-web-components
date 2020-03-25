@@ -44,7 +44,7 @@ class UserCard extends HTMLElement {
 
         this.showInfo = true;
 
-        // Attaach ShadowDOM
+        // Attach ShadowDOM
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
 
