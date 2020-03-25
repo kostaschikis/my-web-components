@@ -29,12 +29,13 @@ class SortableContainer extends HTMLElement {
     constructor() {
         super();
 
-        const draggables = document.querySelectorAll('.draggable')
-        const containers = document.querySelectorAll('.container')
-
         // Attach ShadowDOM
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+        const containers = this.shadowRoot.querySelectorAll('.container')
+        const draggables = this.shadowRoot.querySelectorAll('.draggable')
+        console.log(draggables, containers) 
     }
 }
 
