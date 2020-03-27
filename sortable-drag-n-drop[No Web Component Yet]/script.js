@@ -19,17 +19,14 @@ containers.forEach(container => {
         // By defualt dropping an element is not allowed
         e.preventDefault()
         const afterElement = getDragAfterElement(container, e.clientY)
-
+        // Get the element we are currently dragging
+        const draggable = document.querySelector('.dragging')
         if (afterElement == null) {
             container.appendChild(draggable)
         } else {
             container.insertBefore(draggable, afterElement)
-        }
-
-        // Get the element we are currently dragging
-        const draggable = document.querySelector('.dragging')
-        container.appendChild(draggable)
-    })
+        }        
+    })  
 })
 
 /**
